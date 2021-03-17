@@ -1,0 +1,29 @@
+[
+    {
+    "firstName": "Marek",
+    "lastName": "Marecki",
+    "userName": "Marko",
+    "age": "32",
+    "email": "marek.marecki@test.com",
+    "password": "abc123"
+    },
+
+    {
+    "email": "marek.marecki@test.com",
+    "password": "abc123"
+    },
+
+    {  
+        "videoUrl": "https://www.youtube.com/watch?v=6A-IoOEPbUs",
+        "videoTitle": "music",
+        "videoDescription": "Cool music",
+        "tags": "#cool#der #hak#pak",
+        "uploadedBy": "ziutek",
+        "contactEmail": "adfs.asfd@as.test"
+    },
+
+    {
+        "authorizationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmVrLm1hcmVja2lAdGVzdC5jb20iLCJpYXQiOjE2MTQyNDQ3NDZ9.taHOu7GXOCmhClLCixO5ok-W-fOJzQO5SbsGT67clnM"
+    }
+
+]
