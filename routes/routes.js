@@ -11,7 +11,7 @@ const router = express.Router();
  *   post:
  *      description: Add new user to database.
  *      tags:
- *        - Add new user
+ *        - User
  *      responses:
  *       200: 
  *        description: Successful operation
@@ -38,7 +38,7 @@ router.post('/add-user', userController.addUser);
  *   post:
  *      description: Log user to account
  *      tags:
- *        - Login
+ *        - User
  *      responses:
  *       200: 
  *        description: Successful operation
@@ -62,7 +62,7 @@ router.get('/yt/add-video', videoController.getRandomVideoFromYT);
  *   get:
  *      description: Get five random videos from database
  *      tags:
- *        - Get five random videos
+ *        - Video
  *      responses:
  *       200: 
  *        description: Successful operation
@@ -75,7 +75,7 @@ router.get('/', videoController.getRandomVideo);
  *   get:
  *      description: Get video with specific parameters.
  *      tags:
- *        - Use parameters to get video
+ *        - Video
  *      responses:
  *       200: 
  *        description: Successful operation
@@ -108,7 +108,7 @@ router.get('/api/videos', videoController.getRandomVideo);
  *   post:
  *      description: Add new video to database
  *      tags:
- *        - Add Video 
+ *        - Video 
  *      security:
  *       - Bearer: []
  *      responses:
@@ -214,7 +214,7 @@ router.put('/video/:id', securityController.authenticateToken, videoController.u
  *   put:
  *      description: Update video in database
  *      tags:
- *        - Update Video
+ *        - Video
  *      security:
  *       - Bearer: []
  *      responses:
