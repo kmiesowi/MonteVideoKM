@@ -42,9 +42,15 @@ const options = {
             email: req.body.email
         }
 
+        const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
+        await User.updateOne({ email: user.email }, { refreshToken: refreshToken });
         res.json({
-            authorizationToken: giveToken(user)
+            authorizationToken: options.generateToken(user),
+            refreshToken: refreshToken,
         })
+    },
+    generateToken(person) {
+        return jwt.sign(person, process.env.TOKEN_SECRET, { expiresIn: '30s' });
     }
 }
 
@@ -61,13 +67,6 @@ async function findPassword(email){
     });
     return result.password;
 }
-
-function giveToken(person){
-    return jwt.sign(person, process.env.TOKEN_SECRET);
-}
-
-
-
 
 
 export default options;

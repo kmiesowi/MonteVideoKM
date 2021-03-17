@@ -7,6 +7,34 @@ const router = express.Router();
 /**
  * @swagger
  * paths:
+ *  /refresh:
+ *   post:
+ *      description: Add new user to database.
+ *      tags:
+ *        - User
+ *      responses:
+ *       200: 
+ *        description: Successful operation
+ *       401: 
+ *        description: Unauthorized. Incorrect refresh token.
+ *      requestBody:
+ *       description: Get new access token for user
+ *       required: true
+ *       content:
+ *        application/json:
+ *         schema:
+ *          type: object
+ *          properties:
+ *           refreshToken:
+ *            type: string
+ *            description: User unique refresh token
+ *         example:
+ *          token: 
+ */
+ router.post('/refresh',securityController.refresh);
+/**
+ * @swagger
+ * paths:
  *  /add-user:
  *   post:
  *      description: Add new user to database.
