@@ -47,11 +47,6 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    - task: DeleteFiles@1
-      displayName: 'Remove uneeded files'
-      inputs:
-        Contents: '*'
-        RemoveSourceFolder: true
 
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
