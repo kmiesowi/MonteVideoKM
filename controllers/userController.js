@@ -26,6 +26,29 @@ const options = {
         res.send(result) 
     },
 
+    async addFavouritesVideo(req, res) {
+        const videoId = req.params.id;
+        await User.updateOne(
+            { email: req.user.email }, 
+            { $push: { favouritesVideo: videoId } }
+        );
+        res.send(`Video ${videoId} has been added to favourites already!`);
+    },
+
+    async getFavouritesVideo(req, res) {
+        let userFavouritesVideos = await User.findOne(
+            { email: req.user.email });
+        res.send(userFavouritesVideos.favouritesVideo);
+    },
+
+    async logoutUser(req, res) {
+        await User.updateOne(
+            { email: req.user.email }, 
+            { refreshToken : ""}
+        );
+        res.send('you are logout');
+    },
+
     async loginUser(req, res){
         const existingUser = await findEmail(req.body.email);
         if(!existingUser) {
@@ -49,8 +72,9 @@ const options = {
             refreshToken: refreshToken,
         })
     },
+
     generateToken(person) {
-        return jwt.sign(person, process.env.TOKEN_SECRET, { expiresIn: '30s' });
+        return jwt.sign(person, process.env.TOKEN_SECRET, { expiresIn: '3600s' });
     }
 }
 

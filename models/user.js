@@ -24,6 +24,9 @@ const user = new mongoose.Schema({
         type: String,
         required: [true]
     },
+    favouritesVideo:{
+        type: Array
+    },
     refreshToken:{
         type: String,
     },

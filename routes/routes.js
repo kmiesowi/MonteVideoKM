@@ -29,7 +29,7 @@ const router = express.Router();
  *            type: string
  *            description: User unique refresh token
  *         example:
- *          token: 
+ *          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkpLb3dhbEBnbWFpbC5jb20iLCJpYXQiOjE2MTYwNjk2OTZ9.Bn5lI5n4phk2IvJNSKRXTBSs14K84bpYyczIxunjxOk
  */
  router.post('/refresh',securityController.refresh);
 /**
@@ -82,6 +82,36 @@ router.post('/add-user', userController.addUser);
  *          password: abc123 
  */
 router.post('/login', userController.loginUser);
+
+/**
+ * @swagger
+ * paths:
+ *  /logout:
+ *   get:
+ *      description: Logout user
+ *      tags:
+ *        - User
+ *      security:
+ *       - Bearer: []
+ *      responses:
+ *       200: 
+ *        description: Successful operation
+ */
+ router.get('/logout', securityController.authenticateToken, userController.logoutUser);
+
+/**
+ * @swagger
+ * paths:
+ *  /yt/add-video:
+ *   get:
+ *      description: Get random videos from You Tube.
+ *      tags:
+ *        - Video
+ *      responses:
+ *       200: 
+ *        description: Successful operation
+ */
+
 router.get('/yt/add-video', videoController.getRandomVideoFromYT);
 /**
  * @swagger
@@ -296,5 +326,50 @@ router.put('/video/:id', securityController.authenticateToken, videoController.u
  *       description: Editor email
  *    required:
 */
+
+/**
+ * @swagger
+ * paths:
+ *  /user/video/{videoId}:
+ *   post:
+ *      description: Add video as my favourites video
+ *      tags:
+ *        - Video
+ *      security:
+ *       - Bearer: []
+ *      responses:
+ *       200: 
+ *        description: Successful addding
+ *       401: 
+ *        description: Users is unauthorized. Fill authorize field by correct token.
+ *      parameters:
+ *          - name: videoId
+ *            in: path
+ *            required: true
+ *            description: videoId
+ *            schema:
+ *              type: string
+ */
+
+router.post('/user/video/:id', securityController.authenticateToken, userController.addFavouritesVideo);
+
+/**
+ * @swagger
+ * paths:
+ *  /user/videos:
+ *   get:
+ *      description: Show my favourites video
+ *      tags:
+ *        - Video
+ *      security:
+ *       - Bearer: []
+ *      responses:
+ *       200: 
+ *        description: Success!
+ *       401: 
+ *        description: Users is unauthorized. Fill authorize field by correct token.
+ */
+
+router.get('/user/videos', securityController.authenticateToken, userController.getFavouritesVideo);
 
 export default router;

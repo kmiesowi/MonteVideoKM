@@ -3,6 +3,8 @@ import Video from '../models/video.js';
 import dotenv from 'dotenv';
 import urlRegex from 'url-regex'
 import emailvalidator from 'email-validator';
+import User from '../models/user.js';
+import { title } from 'node:process';
 
 dotenv.config();
 
