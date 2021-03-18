@@ -65,6 +65,8 @@ const vMethods = {
         res.send(userFavouritesVideos.favouritesVideo);
     },
 
+    
+
     async updateVideo(req, res) {
         const videoId = req.params.id;
         let existingVideo = await Video.findOne({
