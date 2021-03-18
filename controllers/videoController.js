@@ -50,6 +50,21 @@ const vMethods = {
         return res.send("Incorrect provided data");
     },
 
+    async addFavouritesVideo(req, res) {
+        const videoId = req.params.id;
+        await User.updateOne(
+            { email: req.user.email }, 
+            { $push: { favouritesVideo: videoId } }
+        );
+        res.send(`Video ${videoId} has been added to favourites already!`);
+    },
+
+    async getFavouritesVideo(req, res) {
+        let userFavouritesVideos = await User.findOne(
+            { email: req.user.email });
+        res.send(userFavouritesVideos.favouritesVideo);
+    },
+
     async updateVideo(req, res) {
         const videoId = req.params.id;
         let existingVideo = await Video.findOne({

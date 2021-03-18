@@ -113,19 +113,7 @@ router.post('/login', userController.loginUser);
  */
 
 router.get('/yt/add-video', videoController.getRandomVideoFromYT);
-/**
- * @swagger
- * paths:
- *  /:
- *   get:
- *      description: Get five random videos from database
- *      tags:
- *        - Video
- *      responses:
- *       200: 
- *        description: Successful operation
- */
-router.get('/', videoController.getRandomVideo);
+
 /**
  * @swagger
  * paths:
@@ -330,7 +318,7 @@ router.put('/video/:id', securityController.authenticateToken, videoController.u
 /**
  * @swagger
  * paths:
- *  /user/video/{videoId}:
+ *  /video/user/{videoId}:
  *   post:
  *      description: Add video as my favourites video
  *      tags:
@@ -351,12 +339,12 @@ router.put('/video/:id', securityController.authenticateToken, videoController.u
  *              type: string
  */
 
-router.post('/user/video/:id', securityController.authenticateToken, userController.addFavouritesVideo);
+router.post('/video/user/:id', securityController.authenticateToken, videoController.addFavouritesVideo);
 
 /**
  * @swagger
  * paths:
- *  /user/videos:
+ *  /video/user:
  *   get:
  *      description: Show my favourites video
  *      tags:
@@ -370,6 +358,6 @@ router.post('/user/video/:id', securityController.authenticateToken, userControl
  *        description: Users is unauthorized. Fill authorize field by correct token.
  */
 
-router.get('/user/videos', securityController.authenticateToken, userController.getFavouritesVideo);
+router.get('/video/user', securityController.authenticateToken, videoController.getFavouritesVideo);
 
 export default router;
